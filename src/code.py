@@ -83,13 +83,13 @@ class Roost:
                     bird.calling = False
 
 
-    def step(self,grow_every=1):
+    def step(self,grow_every=1,grow_by=1):
         self.time += 1
 
         if grow_every > 0 and self.time % grow_every == 0:
             for bird in self.agents:
                 if bird.calling:
-                    bird.call_cells = min(bird.call_cells + 1,24)
+                    bird.call_cells = min(bird.call_cells + grow_by,24)
 
         self.update_calls()
         self.update_takeoffs()
@@ -131,13 +131,13 @@ class Roost:
                 bird.calling = False
                 bird.takeoff_time = self.time
     
-    def step_b(self,grow_every=1,start_probility=0.01):
+    def step_b(self,grow_every=1,start_probility=0.01,grow_by=1):
         self.time += 1
 
         if grow_every > 0 and self.time % grow_every == 0:
             for bird in self.agents:
                 if bird.calling:
-                    bird.call_cells = min(bird.call_cells + 1,24)
+                    bird.call_cells = min(bird.call_cells + grow_by,24)
 
         self.update_calls()
         self.update_takeoffs_b(start_probility)
